@@ -1,0 +1,108 @@
+<template>
+        <div class="c-container">
+            <template if:false={orderWasCreated}>
+                <div class="slds-m-around_medium">
+                    <div class="cart"></div>
+                    <c-menu-items
+                        onselectedproductschange={handleSelectedProductsChangeFromMenuItem}
+                        selected-products={selectedProducts}
+                        order-price={orderPrice}
+                        total-quantity={totalQuantity}
+                    ></c-menu-items>
+                </div>
+            </template>
+            <div class="cart" onclick={openCart}>         
+                <lightning-icon icon-name="utility:cart" size="large" variant="cart" class="cart-icon"> </lightning-icon>
+                <template if:true={totalQuantity}>
+                    <div class="products-quantity">{totalQuantity}</div>
+                </template>
+            </div>
+            <template if:true={isCartOpen}>
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeCart}>
+                                <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Order Details</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <div class="slds-grid  slds-wrap slds-gutters_x-small">
+                                    <div class="slds-col  slds-size_1-of-1 slds-medium-size_1-of-3">
+                                        <div class="page-section page-right">
+                                            <div class="slds-grid slds-wrap">
+                                                <div class="slds-col slds-size_1-of-1 ">
+                                                    <lightning-input type="datetime"
+                                                                     name="input5"
+                                                                     value={readyTime}
+                                                                     onchange={readyTimeChangedHandler}
+                                                                     required=true
+                                                                     label="Order Ready Date"
+                                                                     min={currentDate}></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-1 slds-m-top_x-small">
+                                                    <lightning-input data-id="toggle2"
+                                                                     type="toggle"
+                                                                     label="Do you want to be notified when your Order is Ready?"
+                                                                     checked={showEmail}
+                                                                     onchange={toggleChangedHandler}
+                                                                     message-toggle-active="YES"
+                                                                     message-toggle-inactive="NO"></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-1 ">
+                                                    <template if:true={showEmail}>
+                                                        <lightning-input type="email" data-id="txtEmailAddress"
+                                                                         label="Email Address"
+                                                                         value={enteredEmail}
+                                                                         required={showEmail}
+                                                                         onchange={enteredEmailChangedHandler}></lightning-input>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-1 ">
+                                                    <lightning-textarea name="orderComment" class="abc"
+                                                                        onchange={orderCommentChangedHandler}
+                                                                        label="Order Comment"
+                                                                        placeholder="type here..."></lightning-textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-medium-size_2-of-3">
+                                        <c-menu-items-datatable selected-products={selectedProducts}
+                                                                order-price={orderPrice}
+                                                                total-quantity={totalQuantity}
+                                                                onhandlesave={handleSelectedProductsChangeFromDataTable}
+                                                                onremovefromcart={handleSelectedProductsChangeFromDataTable}
+                                        ></c-menu-items-datatable>
+                                    </div>
+                                </div>
+
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <div class="slds-m-top_medium make-order">
+                                <lightning-button label="Make Order" title="Make Order"
+                                                  class="slds-m-left_x-small submit-button"
+                                                  variant="brand"
+                                                  onclick={createOrder}></lightning-button>
+                            </div>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+            <template if:true={orderWasCreated}>
+                <div class="slds-text-align_center slds-m-top_medium slds-m-bottom_medium">
+                    <h2>Your order {createdOrder.fields.OrderNumber.value} is {createdOrder.fields.Status.value}.</h2>
+                    <br>
+                    <br>
+                    <lightning-button label="Home" title="Go To Home Page" variant="brand"
+                                      class="slds-m-left_x-small submit-button"
+                                      onclick={referenceToHome}></lightning-button>
+                </div>
+            </template>
+        </div>
+</template>

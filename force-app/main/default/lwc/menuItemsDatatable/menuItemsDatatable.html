@@ -1,0 +1,29 @@
+<template>
+
+    <div style="height: 100%;" class="total-price">
+        <lightning-datatable
+                key-field="productId"
+                data={selectedProducts}
+                show-row-number-column
+                hide-checkbox-column
+                onsave={handleSave}
+                draft-values={saveDraftValues}
+                onrowaction={removeFromCart}
+                columns={selectedProductsColumns}>
+        </lightning-datatable>
+
+        <div>
+            <span class="slds-badge slds-badge_inverse slds-m-top_small">Total price: {orderPrice}
+                <span class="slds-badge__icon slds-badge__icon_right slds-badge__icon_inverse">
+                    <span class="slds-icon_container slds-icon-utility-moneybag slds-current-color"
+                          title="Order Total Price">
+                        <svg class="slds-icon slds-icon_xx-small" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#moneybag"></use>
+                        </svg>
+                    </span>
+                </span>
+            </span>
+        </div>
+    </div>
+
+</template>

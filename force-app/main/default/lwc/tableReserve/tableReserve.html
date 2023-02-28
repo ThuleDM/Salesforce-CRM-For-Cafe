@@ -1,0 +1,56 @@
+<template>
+
+    <div style="background-color: white;" class="slds-p-around_medium">
+        <template if:true={tablesData}>
+            <div class="slds-p-around_none  slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none centered-cards">
+                <lightning-layout multiple-rows>
+                    <template for:each={tablesData} for:item="table" for:index="index">
+                        <lightning-layout-item key={table.tableId} padding="around-small">
+                            <div class="flip-card centered-cards">
+                                <div class="flip-card-inner slds-card slds-grid slds-gutters" key={table.tableId}
+                                     data-row-index={table.tableId}
+                                     data-id={table.tableId}
+                                     onmouseover={addClass} onmouseout={removeClass}>
+                                    <div class="flip-card-front">
+                                        <div class={table.tableColor}>
+                                            <div class="slds-card__header slds-grid">
+                                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                    <div class="slds-media__body">
+                                                        <h2 class="slds-card__header-title slds-truncate">
+                                                            <span title={table.label}>{table.label}</span>
+                                                        </h2>
+                                                    </div>
+                                                </header>
+                                            </div>
+                                        </div>
+                                        <!--                                            <div class="slds-text-color_destructive">{table.label}</div>-->
+                                    </div>
+                                    <div class="flip-card-back slds-grid slds-grid_vertical " style="height:100%">
+                                        <p class="slds-p-around_x-small">
+                                            <text class="slds-text-title_caps" style="text-align: center;">
+                                                {table.label}
+                                            </text>
+                                        </p>
+                                        <p class="slds-p-around_x-small">Title: {table.label}</p>
+<!--                                        <div class="slds-col slds-size_1-of-1">-->
+
+                                            <lightning-button variant="brand" label="Brand" title="Primary action"
+                                                              onclick={handleClick}
+                                                              class="slds-col slds-size_1-of-1"></lightning-button>
+                                            <lightning-button variant="brand" label="Brand" title="Primary action"
+                                                              onclick={handleClick}
+                                                              class="slds-col slds-size_1-of-1"></lightning-button>
+                                            <lightning-button variant="brand" label="Brand" title="Primary action"
+                                                              onclick={handleClick}
+                                                              class="slds-col slds-size_1-of-1"></lightning-button>
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+</template>

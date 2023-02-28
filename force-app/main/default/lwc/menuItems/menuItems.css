@@ -1,0 +1,124 @@
+body { font-family: sans-serif; }
+
+.main {
+    min-height: 300px;
+    background: #f0efef;
+}
+
+.page-section {
+    border: solid 1px #ccc;
+    padding: 1rem;
+}
+
+.custom-box {
+    background: white;
+}
+
+.total-price{
+    background:  #d8dde6;;
+    min-height: 30px;
+    min-width: 40px;
+}
+
+.centered-cards{
+    display: flex;
+    justify-content: center;
+}
+
+.order-price{
+    text-align: center;
+    color: white;
+}
+
+.shadow{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.image-parent{
+    text-align: center;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin-top: 5px;
+
+    border-width: var(--slds-c-card-sizing-border, var(--sds-c-card-sizing-border, var(--lwc-borderWidthThin,1px)));
+    border-style: solid;
+    border-color: rgb(188, 188, 188);
+    border-radius: var(--slds-c-card-radius-border, var(--sds-c-card-radius-border, var(--lwc-borderRadiusMedium,0.25rem)));
+}
+
+.image{
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.price{
+    color: #a3a3a3; font-family: 'Lucida Sans', Arial, sans-serif; font-size: 16px; line-height: 26px; 
+}
+
+.buy-button{
+    cursor: pointer;
+    caret-color: transparent;
+    
+}
+
+.product-card{
+    width: 320px;
+    max-width: 320px; 
+    height: 230px;
+    max-height: 230px;
+    transition: transform .2s;
+    perspective: 1000px;
+    margin-bottom: 60px;
+}
+
+.product-card:hover {
+    transform: scale(1.03); 
+}
+
+.chosen-sort-item{
+    display: text;
+    padding-left: 10px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center right;
+    transition: transform 1s;
+}
+
+.card.is-flipped {
+    transform: translateX(-100%) rotateY(-180deg);
+}
+
+.card__face--front, .card__face--back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card__face--back {
+    transform: rotateY(180deg);
+}
+
+.card__face-body-back{
+    text-align: center;
+    padding: 0 13px 0 13px;
+    height: 180px;
+    width: 100%;
+}
+
+.class1 {
+    transform: rotateY(180deg);
+}

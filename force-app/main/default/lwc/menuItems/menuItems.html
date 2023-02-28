@@ -1,0 +1,77 @@
+<template>
+
+    <h2>Menu Items</h2>
+    
+    <lightning-button-menu alternative-text="Show menu" variant="border-filled" label={selectedItemLabel} onselect={handleOnselect}>
+        <lightning-menu-item value="ascendingSort" label="Ascending price"></lightning-menu-item>
+        <lightning-menu-item value="descendingSort" label="Descending price"></lightning-menu-item>
+        <lightning-menu-item value="alphabeticalSort" label="From A to Z"></lightning-menu-item>
+        <lightning-menu-item value="notAlphabeticalSort" label="From Z to A"></lightning-menu-item>
+    </lightning-button-menu>
+    <lightning-button label="Sort" title="Non-primary action" onclick={sortButton} class="slds-m-left_x-small"></lightning-button>
+    
+    <div class="slds-grid slds-wrap slds-gutters_small ">
+        <div class="slds-col slds-size_1-of-1 ">
+            <lightning-tabset>
+                <template for:each={mapProductsByGroup} for:item="group">
+                    <lightning-tab label={group.key} key={group.key}>
+                        <div class="slds-grid slds-wrap slds-gutters_x-small centered-cards">
+                            <template if:true={group.products}>
+                                <template for:each={group.products}
+                                          for:item="product">
+                                    <div class="slds-col slds-p-vertical_xx-small scene product-card"
+                                         key={product.productId}>
+                                        <div class="card" onclick={toggleCardFlip} data-descr={product.description}>
+                                            <div class="card__face card__face--front">
+                                                <article class="slds-card_boundary shadow">
+                                                    <div class="slds-card__header slds-grid">
+                                                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                            <div class="slds-media__body">
+                                                                <h2 class="slds-card__header-title slds-truncate">
+                                                                    <span title={product.name}>{product.name}</span>
+                                                                </h2>
+                                                            </div>
+                                                        </header>
+                                                    </div>
+                                                    <div class="slds-card__body_inner image-parent">
+                                                        <img src={product.photoId} alt="coffee" class="image">
+                                                    </div>
+                                                </article>
+                                            </div>
+                                                <div class="card__face card__face--back">
+                                                    <article class="slds-card_boundary shadow">
+                                                        <div class="slds-card__header slds-grid">
+                                                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                                                <div class="slds-media__body">
+                                                                    <h2 class="slds-card__header-title slds-truncate">
+                                                                        <span title={product.name}>{product.name}</span>
+                                                                    </h2>
+                                                                </div>
+                                                            </header>
+                                                        </div>
+                                                        <div class="slds-card__body_inner card__face-body-back ">
+                                                            <div class="slds-scrollable_y">
+                                                            <span class="slds-text-longform">
+                                                                {product.description}
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                        </div>
+                                        <footer class="slds-card__footer footer shadow">
+                                            <div class="price">Price: {product.amount}$</div>
+                                            <span class="slds-badge buy-button"
+                                                  data-item={product.productId}
+                                                  onclick={handleclick}>Buy</span>
+                                        </footer>
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                    </lightning-tab>
+                </template>
+            </lightning-tabset>
+        </div>
+    </div>
+</template>
