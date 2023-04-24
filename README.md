@@ -84,6 +84,6 @@ The next step is to improve all existing functionality. Also currently being dev
 
 Login: lysyakdima@gmail.com
 
-Password: 1234dima
+Password: dima.1234
 
 Link: https://ukrainiancafe-dev-ed.develop.my.site.com/EmptyPlate/s/
