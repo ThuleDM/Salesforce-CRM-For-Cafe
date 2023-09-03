@@ -8,7 +8,7 @@ public class OrderFormController {
     @TestVisible
     private static final String OTHER = 'Other';
     private static final String COMMUNITY_MENU = 'communityMenu';
-    //це все перенести кудись в оргу
+    
     private static final String urlImage = '/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpg&operationContext=CHATTER&versionId=';
 //    private static final String urlFood = '/SmoothieAndPaddle/resource/1672947835000/food';
     private static final String urlFood = '/EmptyPlate/resource/1673289369000/food';
